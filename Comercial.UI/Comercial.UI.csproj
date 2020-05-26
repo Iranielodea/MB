@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D6428DCA-A66C-437A-ACBE-A5EC7EC3C039}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Comercial.UI</RootNamespace>
+    <AssemblyName>Comercial.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Comercial.BaseUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Comercial.BaseUI\bin\Debug\Comercial.BaseUI.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.11.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Comercial.Infra\bin\Debug\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\Carros\temp\IOC\DI\deploy\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comum\EnumProgramas.cs" />
+    <Compile Include="Comum\Funcoes.cs" />
+    <Compile Include="Consultas\ConsultaCidade.cs" />
+    <Compile Include="Consultas\ConsultaFormaPagto.cs" />
+    <Compile Include="Consultas\ConsultaContaBancaria.cs" />
+    <Compile Include="Consultas\ConsultaFornecedor.cs" />
+    <Compile Include="Consultas\ConsultaCliente.cs" />
+    <Compile Include="Consultas\ConsultaVendedor.cs" />
+    <Compile Include="Consultas\ConsultaTipoFornecedor.cs" />
+    <Compile Include="Consultas\ConsultaTransportadora.cs" />
+    <Compile Include="Consultas\ConsultaUnidade.cs" />
+    <Compile Include="Consultas\ConsultaGrupo.cs" />
+    <Compile Include="Consultas\ConsultaEstado.cs" />
+    <Compile Include="Consultas\ConsultaUnidadeTexto.cs" />
+    <Compile Include="Formularios\frmCidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmCidade.Designer.cs">
+      <DependentUpon>frmCidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmContaBanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmContaBanco.Designer.cs">
+      <DependentUpon>frmContaBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmEmpresa.Designer.cs">
+      <DependentUpon>frmEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmEstados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmEstados.Designer.cs">
+      <DependentUpon>frmEstados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmFormaPagto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmFormaPagto.Designer.cs">
+      <DependentUpon>frmFormaPagto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmFornecedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmFornecedor.Designer.cs">
+      <DependentUpon>frmFornecedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmContato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmContato.Designer.cs">
+      <DependentUpon>frmContato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmContas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmContas.Designer.cs">
+      <DependentUpon>frmContas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmPedido.Designer.cs">
+      <DependentUpon>frmPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmMotorista.Designer.cs">
+      <DependentUpon>frmMotorista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmProduto.Designer.cs">
+      <DependentUpon>frmProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmTabCodigo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmTabCodigo.Designer.cs">
+      <DependentUpon>frmTabCodigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmTextoUnidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmTextoUnidade.Designer.cs">
+      <DependentUpon>frmTextoUnidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmTipoFornecedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmTipoFornecedor.Designer.cs">
+      <DependentUpon>frmTipoFornecedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmTransportadora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmTransportadora.Designer.cs">
+      <DependentUpon>frmTransportadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmUltimosPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmUltimosPedidos.Designer.cs">
+      <DependentUpon>frmUltimosPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmUnidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmUnidade.Designer.cs">
+      <DependentUpon>frmUnidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmVendedor.Designer.cs">
+      <DependentUpon>frmVendedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmGrupo.Designer.cs">
+      <DependentUpon>frmGrupo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comum\Grade.cs" />
+    <Compile Include="Objetos\ucCNPJ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Objetos\ucCNPJ.Designer.cs">
+      <DependentUpon>ucCNPJ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Objetos\ucCPF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Objetos\ucCPF.Designer.cs">
+      <DependentUpon>ucCPF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Objetos\ucData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Objetos\ucData.Designer.cs">
+      <DependentUpon>ucData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Objetos\ucValor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Objetos\ucValor.Designer.cs">
+      <DependentUpon>ucValor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PesquisasGerais\UsrPesquisa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PesquisasGerais\UsrPesquisa.Designer.cs">
+      <DependentUpon>UsrPesquisa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\frmCidade.resx">
+      <DependentUpon>frmCidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmContaBanco.resx">
+      <DependentUpon>frmContaBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmEmpresa.resx">
+      <DependentUpon>frmEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmEstados.resx">
+      <DependentUpon>frmEstados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmFormaPagto.resx">
+      <DependentUpon>frmFormaPagto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmCliente.resx">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmFornecedor.resx">
+      <DependentUpon>frmFornecedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmContato.resx">
+      <DependentUpon>frmContato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmContas.resx">
+      <DependentUpon>frmContas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmPedido.resx">
+      <DependentUpon>frmPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmMotorista.resx">
+      <DependentUpon>frmMotorista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmProduto.resx">
+      <DependentUpon>frmProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmTabCodigo.resx">
+      <DependentUpon>frmTabCodigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmTextoUnidade.resx">
+      <DependentUpon>frmTextoUnidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmTipoFornecedor.resx">
+      <DependentUpon>frmTipoFornecedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmTransportadora.resx">
+      <DependentUpon>frmTransportadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmUltimosPedidos.resx">
+      <DependentUpon>frmUltimosPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmUnidade.resx">
+      <DependentUpon>frmUnidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmVendedor.resx">
+      <DependentUpon>frmVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmGrupo.resx">
+      <DependentUpon>frmGrupo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Objetos\ucCNPJ.resx">
+      <DependentUpon>ucCNPJ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Objetos\ucCPF.resx">
+      <DependentUpon>ucCPF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Objetos\ucData.resx">
+      <DependentUpon>ucData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Objetos\ucValor.resx">
+      <DependentUpon>ucValor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PesquisasGerais\UsrPesquisa.resx">
+      <DependentUpon>UsrPesquisa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Comercial.Dominio\Comercial.Dominio.csproj">
+      <Project>{b22d09a8-315d-426e-89c0-d34c3e7f11d0}</Project>
+      <Name>Comercial.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CrossPlataforma\CrossPlataforma.csproj">
+      <Project>{62ad0925-c854-4490-8093-bdeabb127a56}</Project>
+      <Name>CrossPlataforma</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

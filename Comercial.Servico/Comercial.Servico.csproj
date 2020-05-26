@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C86070A-17B6-48B5-A898-559AD372A71F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Comercial.Servico</RootNamespace>
+    <AssemblyName>Comercial.Servico</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Concretas\ServicoCadObs.txt" />
+    <None Include="Concretas\ServicoContaBanco.txt" />
+    <None Include="Concretas\ServicoCliente.txt" />
+    <None Include="Concretas\ServicoContato.txt" />
+    <None Include="Concretas\ServicoEnderecoEntrega.txt" />
+    <None Include="Concretas\ServicoFornecedor.txt" />
+    <None Include="Concretas\ServicoCarga.txt" />
+    <None Include="Concretas\ServicoConta.txt" />
+    <None Include="Concretas\ServicoPessoaCredito.txt" />
+    <None Include="Concretas\ServicoPedido.txt" />
+    <None Include="Concretas\ServicoMotorista.txt" />
+    <None Include="Concretas\ServicoTransportadora.txt" />
+    <None Include="Concretas\ServicoProduto.txt" />
+    <None Include="Concretas\ServicoParametro.txt" />
+    <None Include="Concretas\ServicoUnidade.txt" />
+    <None Include="Concretas\ServicoEstado.txt" />
+    <None Include="Concretas\ServicoCidade.txt" />
+    <None Include="Concretas\ServicoEmpresa.txt" />
+    <None Include="Concretas\ServicoFormaPagto.txt" />
+    <None Include="Concretas\ServicoFornecedorTipoEmpresa.txt" />
+    <None Include="Concretas\ServicoTabCodigo.txt" />
+    <None Include="Concretas\ServicoUnidadeTexto.txt" />
+    <None Include="Concretas\ServicoVendedor.txt" />
+    <None Include="Concretas\ServicoPermissao.txt" />
+    <None Include="Concretas\ServicoUsuario.txt" />
+    <None Include="Geral\Financeiro.txt" />
+    <None Include="Geral\PermissaoUsuario.txt" />
+    <None Include="Geral\Validacao.txt" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Comercial.Dominio\Comercial.Dominio.csproj">
+      <Project>{b22d09a8-315d-426e-89c0-d34c3e7f11d0}</Project>
+      <Name>Comercial.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Comercial.Infra\Comercial.Infra.csproj">
+      <Project>{836df869-fa7f-4a5b-92f0-f81816b1fa6b}</Project>
+      <Name>Comercial.Infra</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

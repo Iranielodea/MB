@@ -1,0 +1,16 @@
+﻿using System;
+
+namespace Comercial.Dominio.Geral
+{
+    public class Financeiro
+    {
+        public void CalcularParcelas(decimal valorBase, ref decimal valorPrimeira, ref decimal valorOutras, int qtdeParcelas)
+        {
+            int valor1 = Convert.ToInt32(valorBase / qtdeParcelas);
+            decimal valor2 = valor1 * qtdeParcelas;
+            decimal valor3 = valorBase - valor2;
+            valorPrimeira = valor1 + valor3;
+            valorOutras = valor1;
+        }
+    }
+}

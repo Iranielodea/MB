@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B22D09A8-315D-426E-89C0-D34C3E7F11D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Comercial.Dominio</RootNamespace>
+    <AssemblyName>Comercial.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Extension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Extension.1.0.0.1\lib\net45\Dapper.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constantes\MensagensPadrao.cs" />
+    <Compile Include="Entidades\Agenciador.cs" />
+    <Compile Include="Entidades\CadObs.cs" />
+    <Compile Include="Entidades\Carga.cs" />
+    <Compile Include="Entidades\CargaVencimento.cs" />
+    <Compile Include="Entidades\Cidade.cs" />
+    <Compile Include="Entidades\Cliente.cs" />
+    <Compile Include="Entidades\Condicao.cs" />
+    <Compile Include="Entidades\CondicaoItem.cs" />
+    <Compile Include="Entidades\ConfPedido.cs" />
+    <Compile Include="Entidades\ContaBanco.cs" />
+    <Compile Include="Entidades\CadContato.cs" />
+    <Compile Include="Entidades\Conta.cs" />
+    <Compile Include="Entidades\Contato.cs" />
+    <Compile Include="Entidades\DadosFixos.cs" />
+    <Compile Include="Entidades\DadosStaticos.cs" />
+    <Compile Include="Entidades\Diretor.cs" />
+    <Compile Include="Entidades\Empresa.cs" />
+    <Compile Include="Entidades\Fornecedor.cs" />
+    <Compile Include="Entidades\Motorista.cs" />
+    <Compile Include="Entidades\Pedido.cs" />
+    <Compile Include="Entidades\PedidoItem.cs" />
+    <Compile Include="Entidades\PessoaBase.cs" />
+    <Compile Include="Entidades\EnderecoEntrega.cs" />
+    <Compile Include="Entidades\EntidadeBase.cs" />
+    <Compile Include="Entidades\Estado.cs" />
+    <Compile Include="Entidades\FormaPagto.cs" />
+    <Compile Include="Entidades\FornecedorTipoEmpresa.cs" />
+    <Compile Include="Entidades\Grupo.cs" />
+    <Compile Include="Entidades\ObservacaoConta.cs" />
+    <Compile Include="Entidades\Parametro.cs" />
+    <Compile Include="Entidades\Permissao.cs" />
+    <Compile Include="Entidades\PessoaCredito.cs" />
+    <Compile Include="Entidades\Produto.cs" />
+    <Compile Include="Entidades\ReferenciaBancaria.cs" />
+    <Compile Include="Entidades\ReferenciaComercial.cs" />
+    <Compile Include="Entidades\TabelaPrazo.cs" />
+    <Compile Include="Entidades\Transportadora.cs" />
+    <Compile Include="Entidades\Unidade.cs" />
+    <Compile Include="Entidades\UnidadeTexto.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Entidades\Vendedor.cs" />
+    <Compile Include="Enumeradores\Enumerador.cs" />
+    <Compile Include="Geral\Financeiro.cs" />
+    <Compile Include="Geral\Funcao.cs" />
+    <Compile Include="Geral\PermissaoUsuario.cs" />
+    <Compile Include="Geral\Validacao.cs" />
+    <Compile Include="Interfaces\IRepositorioBase.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioCadObs.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioEstado.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioCidade.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioEmpresa.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioFormaPagto.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioFornecedorTipoEmpresa.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioContaBanco.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioCliente.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioContato.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioEnderecoEntrega.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioFornecedor.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioCarga.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioConta.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioPedidoItem.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioPedido.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioMotorista.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioTransportadora.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioProduto.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioParametro.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioUnidade.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioTabCodigo.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioUnidadeTexto.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioVendedor.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioPermissao.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioUsuario.cs" />
+    <Compile Include="Interfaces\Repositorio\IRepositorioGrupo.cs" />
+    <Compile Include="Interfaces\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\Servico\IServicoBase.cs" />
+    <Compile Include="Interfaces\Servico\IServicoCadObs.cs" />
+    <Compile Include="Interfaces\Servico\IServicoCidade.cs" />
+    <Compile Include="Interfaces\Servico\IServicoEmpresa.cs" />
+    <Compile Include="Interfaces\Servico\IServicoFormaPagto.cs" />
+    <Compile Include="Interfaces\Servico\IServicoFornecedorTipoEmpresa.cs" />
+    <Compile Include="Interfaces\Servico\IServicoContaBanco.cs" />
+    <Compile Include="Interfaces\Servico\IServicoCliente.cs" />
+    <Compile Include="Interfaces\Servico\IServicoContato.cs" />
+    <Compile Include="Interfaces\Servico\IServicoEnderecoEntrega.cs" />
+    <Compile Include="Interfaces\Servico\IServicoFornecedor.cs" />
+    <Compile Include="Interfaces\Servico\IServicoCarga.cs" />
+    <Compile Include="Interfaces\Servico\IServicoConta.cs" />
+    <Compile Include="Interfaces\Servico\IServicoPedidoItem.cs" />
+    <Compile Include="Interfaces\Servico\IServicoPedido.cs" />
+    <Compile Include="Interfaces\Servico\IServicoMotorista.cs" />
+    <Compile Include="Interfaces\Servico\IServicoTransportadora.cs" />
+    <Compile Include="Interfaces\Servico\IServicoProduto.cs" />
+    <Compile Include="Interfaces\Servico\IServicoParametro.cs" />
+    <Compile Include="Interfaces\Servico\IServicoUnidade.cs" />
+    <Compile Include="Interfaces\Servico\IServicoTabCodigo.cs" />
+    <Compile Include="Interfaces\Servico\IServicoUnidadeTexto.cs" />
+    <Compile Include="Interfaces\Servico\IServicoVendedor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interfaces\Servico\IServicoEstado.cs" />
+    <Compile Include="Interfaces\Servico\IServicoGrupo.cs" />
+    <Compile Include="Interfaces\Servico\IServicoPermissao.cs" />
+    <Compile Include="Interfaces\Servico\IServicoUsuario.cs" />
+    <Compile Include="Servicos\ServicoBase.cs" />
+    <Compile Include="Servicos\ServicoCadObs.cs" />
+    <Compile Include="Servicos\ServicoCarga.cs" />
+    <Compile Include="Servicos\ServicoCargaVencimento.cs" />
+    <Compile Include="Servicos\ServicoCidade.cs" />
+    <Compile Include="Servicos\ServicoCliente.cs" />
+    <Compile Include="Servicos\ServicoConta.cs" />
+    <Compile Include="Servicos\ServicoContaBanco.cs" />
+    <Compile Include="Servicos\ServicoContato.cs" />
+    <Compile Include="Servicos\ServicoEmpresa.cs" />
+    <Compile Include="Servicos\ServicoEnderecoEntrega.cs" />
+    <Compile Include="Servicos\ServicoEstado.cs" />
+    <Compile Include="Servicos\ServicoFormaPagto.cs" />
+    <Compile Include="Servicos\ServicoFornecedor.cs" />
+    <Compile Include="Servicos\ServicoFornecedorTipoEmpresa.cs" />
+    <Compile Include="Servicos\ServicoMotorista.cs" />
+    <Compile Include="Servicos\ServicoObsConta.cs" />
+    <Compile Include="Servicos\ServicoParametro.cs" />
+    <Compile Include="Servicos\ServicoPedido.cs" />
+    <Compile Include="Servicos\ServicoPedidoItem.cs" />
+    <Compile Include="Servicos\ServicoPermissao.cs" />
+    <Compile Include="Servicos\ServicoGrupo.cs" />
+    <Compile Include="Servicos\ServicoPessoaCredito.cs" />
+    <Compile Include="Servicos\ServicoProduto.cs" />
+    <Compile Include="Servicos\ServicoTabCodigo.cs" />
+    <Compile Include="Servicos\ServicoTransportadora.cs" />
+    <Compile Include="Servicos\ServicoUnidade.cs" />
+    <Compile Include="Servicos\ServicoUnidadeTexto.cs" />
+    <Compile Include="Servicos\ServicoUsuario.cs" />
+    <Compile Include="Servicos\ServicoVendedor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

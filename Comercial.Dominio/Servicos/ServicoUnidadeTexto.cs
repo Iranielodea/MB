@@ -1,0 +1,75 @@
+﻿using Comercial.Dominio.Entidades;
+using Comercial.Dominio.Interfaces.Repositorio;
+using Comercial.Dominio.Interfaces.Servico;
+using System;
+using System.Collections.Generic;
+using System.Data;
+
+namespace Comercial.Dominio.Servicos
+{
+    public class ServicoUnidadeTexto : ServicoBase<UnidadeTexto>, IServicoUnidadeTexto
+    {
+        private readonly IRepositorioUnidadeTexto _repositorioUnidadeTexto;
+        private readonly IServicoPermissao _servicoPermissao;
+        private readonly IRepositorioUnidadeTextoConsulta _repositorioUnidadeTextoConsulta;
+
+        public ServicoUnidadeTexto(IRepositorioUnidadeTexto repositorioUnidadeTexto,
+            IRepositorioUnidadeTextoConsulta repositorioUnidadeTextoConsulta, IServicoPermissao servicoPermissao) : base(repositorioUnidadeTexto)
+        {
+            _repositorioUnidadeTexto = repositorioUnidadeTexto;
+            _repositorioUnidadeTextoConsulta = repositorioUnidadeTextoConsulta;
+            _servicoPermissao = servicoPermissao;
+        }
+
+        public UnidadeTexto ObterPorId(int id)
+        {
+            return _repositorioUnidadeTexto.GetById(id);
+        }
+
+        public void Excluir(UnidadeTexto unidadeTexto, string nomeUsuario)
+        {
+            try
+            {
+                _repositorioUnidadeTexto.Delete(unidadeTexto);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int Salvar(UnidadeTexto unidadeTexto, string nomeUsuario)
+        {
+            if (string.IsNullOrWhiteSpace(unidadeTexto.Observacao))
+                throw new Exception("A Observação é obrigatória!");
+            if (string.IsNullOrWhiteSpace(unidadeTexto.Texto))
+                throw new Exception("O texto é obrigatório!");
+
+            try
+            {
+                if (unidadeTexto.Id == 0)
+                {
+                    unidadeTexto.Usu_Inc = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioUnidadeTexto.Insert(ref unidadeTexto);
+                }
+                else
+                {
+                    unidadeTexto.Usu_Alt = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioUnidadeTexto.Update(unidadeTexto);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return unidadeTexto.Id;
+        }
+
+        public IEnumerable<UnidadeTextoConsulta> Filtrar(string campo, string valor, int id = 0)
+        {
+            return _repositorioUnidadeTextoConsulta.Filtrar(campo, valor, id);
+        }
+    }
+}

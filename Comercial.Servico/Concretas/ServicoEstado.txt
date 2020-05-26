@@ -1,0 +1,84 @@
+﻿using Comercial.Dominio.Entidades;
+using Comercial.Dominio.Interfaces.Repositorio;
+using Comercial.Dominio.Interfaces.Servico;
+using Comercial.Infra.Repositorio;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using static Comercial.Dominio.Enumeradores.Enumerador;
+
+namespace Comercial.Servico.Concretas
+{
+    public class ServicoEstado : IServicoEstado
+    {
+        private readonly string _tabela;
+        private readonly IRepositorioEstado _repositorioEstado;
+        private readonly IRepositorioEstadoConsulta _repositorioEstadoConsulta;
+        private readonly IServicoPermissao _servicoPermissao;
+
+        public ServicoEstado(IDbConnection conexao, IDbTransaction transaction, IRepositorioEstado repositorioEstado,
+            IRepositorioEstadoConsulta repositorioEstadoConsulta, IServicoPermissao servicoPermissao)
+        {
+            _repositorioEstado = repositorioEstado;
+            _repositorioEstadoConsulta = repositorioEstadoConsulta;
+            _servicoPermissao = servicoPermissao;
+            _tabela = "ESTADO";
+        }
+
+        public Estado ObterPorId(int id)
+        {
+            return _repositorioEstado.GetById(id);
+        }
+
+        public void Excluir(Estado estado, string nomeUsuario)
+        {
+            try
+            {
+                _servicoPermissao.Permitir(AcaoUsuario.Excluir, _tabela, nomeUsuario);
+                _repositorioEstado.Delete(estado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int Salvar(Estado estado, string nomeUsuario)
+        {
+            if (string.IsNullOrWhiteSpace(estado.Desc_Estado))
+                throw new Exception("A Descrição é obrigatória!");
+
+            try
+            {
+                if (estado.Id_Estado == 0)
+                {
+                    _servicoPermissao.Permitir(AcaoUsuario.Incluir, _tabela, nomeUsuario);
+                    estado.Cod_Empresa = DadosStaticos.IdEmpresa;
+                    estado.Usu_Inc = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioEstado.Insert(ref estado);
+                }
+                else
+                {
+                    _servicoPermissao.Permitir(AcaoUsuario.Alterar, _tabela, nomeUsuario);
+                    estado.Usu_Alt = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioEstado.Update(estado);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return estado.Id_Estado;
+        }
+
+        public Estado ObterPorSigla(string sigla, int codEmpresa)
+        {
+            return _repositorioEstado.First(x => x.Cod_Empresa == codEmpresa && x.Sigla == sigla);
+        }
+
+        public IEnumerable<EstadoConsulta> Filtrar(string campo, string valor, int codEmpresa, int id = 0)
+        {
+            return _repositorioEstadoConsulta.Filtrar(campo, valor, codEmpresa, id);
+        }
+    }
+}

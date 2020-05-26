@@ -1,0 +1,89 @@
+﻿using Comercial.Dominio.Entidades;
+using Comercial.Dominio.Geral;
+using Comercial.Dominio.Interfaces.Repositorio;
+using Comercial.Dominio.Interfaces.Servico;
+using System;
+using System.Collections.Generic;
+using static Comercial.Dominio.Enumeradores.Enumerador;
+
+namespace Comercial.Dominio.Servicos
+{
+    public class ServicoEmpresa : ServicoBase<Empresa>, IServicoEmpresa
+    {
+        private readonly string _tabela;
+        private readonly IRepositorioEmpresa _repositorioEmpresa;
+        private readonly IServicoPermissao _servicoPermissao;
+        private readonly IRepositorioEmpresaConsulta _repositorioEmpresaConsulta;
+
+        public ServicoEmpresa(IRepositorioEmpresa repositorioEmpresa,
+            IRepositorioEmpresaConsulta repositorioEmpresaConsulta, IServicoPermissao servicoPermissao)
+            : base(repositorioEmpresa)
+        {
+            _repositorioEmpresa = repositorioEmpresa;
+            _repositorioEmpresaConsulta = repositorioEmpresaConsulta;
+            _servicoPermissao = servicoPermissao;
+            _tabela = "EMPRESA";
+        }
+
+        public Empresa ObterPorId(int id)
+        {
+            return _repositorioEmpresa.GetById(id);
+        }
+
+        public void Excluir(int id, string nomeUsuario)
+        {
+            try
+            {
+                _servicoPermissao.Permitir(AcaoUsuario.Excluir, _tabela, nomeUsuario);
+                _repositorioEmpresa.Delete(_repositorioEmpresa.GetById(id));
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int Salvar(Empresa empresa, string nomeUsuario)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(empresa.Nome))
+                    throw new Exception("A Descrição é obrigatória!");
+
+                if (!Validacao.ValidarCnpj(empresa.CNPJ))
+                    throw new Exception("CNPJ inválido!");
+
+                if ((!string.IsNullOrWhiteSpace(empresa.Insc_Estadual)) && (!string.IsNullOrWhiteSpace(empresa.Estado)))
+                {
+                    if (!Validacao.ValidarIE(empresa.Insc_Estadual, empresa.Estado))
+                        throw new Exception("Inscrição Estadual inválida!");
+                }
+
+                if (empresa.Cod_Empresa == 0)
+                {
+                    _servicoPermissao.Permitir(AcaoUsuario.Incluir, _tabela, nomeUsuario);
+                    empresa.Usu_Inc = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioEmpresa.Insert(ref empresa);
+                }
+                else
+                {
+                    _servicoPermissao.Permitir(AcaoUsuario.Alterar, _tabela, nomeUsuario);
+                    empresa.Usu_Alt = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioEmpresa.Update(empresa);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return empresa.Cod_Empresa;
+        }
+
+        public IEnumerable<EmpresaConsulta> Filtrar(string campo, string valor, int id = 0)
+        {
+            return _repositorioEmpresaConsulta.Filtrar(campo, valor, id);
+        }
+    }
+}

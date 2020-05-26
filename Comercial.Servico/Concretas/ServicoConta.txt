@@ -1,0 +1,98 @@
+﻿using Comercial.Dominio.Entidades;
+using Comercial.Dominio.Interfaces.Repositorio;
+using Comercial.Dominio.Interfaces.Servico;
+using System;
+using System.Collections.Generic;
+using static Comercial.Dominio.Enumeradores.Enumerador;
+
+namespace Comercial.Dominio.Servicos
+{
+    public class ServicoConta : ServicoBase<Conta>, IServicoConta
+    {
+        private readonly string _tabela;
+        private readonly IRepositorioConta _repositorioConta;
+        private readonly IServicoPermissao _servicoPermissao;
+        private readonly IRepositorioContaConsulta _repositorioContaConsulta;
+
+        public ServicoConta(IRepositorioConta repositorioConta,
+            IRepositorioContaConsulta repositorioContaConsulta, IServicoPermissao servicoPermissao)
+            :base(repositorioConta)
+        {
+            _repositorioConta = repositorioConta;
+            _repositorioContaConsulta = repositorioContaConsulta;
+            _servicoPermissao = servicoPermissao;
+            _tabela = "CONTAS";
+        }
+
+        public Conta ObterPorId(int id)
+        {
+            return _repositorioConta.GetById(id);
+        }
+
+        public void Excluir(Conta conta, string nomeUsuario)
+        {
+            try
+            {
+                _servicoPermissao.Permitir(AcaoUsuario.Excluir, _tabela, nomeUsuario);
+                _repositorioConta.Delete(conta);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int Salvar(Conta conta, string nomeUsuario)
+        {
+            if (conta.Cod_Cliente == 0)
+                throw new Exception("O cliente é obrigatório!");
+            if (conta.Cod_For == 0)
+                throw new Exception("O fornecedor é obrigatório!");
+            try
+            {
+                if (conta.Id_Conta == 0)
+                {
+                    _servicoPermissao.Permitir(AcaoUsuario.Incluir, _tabela, nomeUsuario);
+                    conta.Usu_Inc = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioConta.Insert(ref conta);
+                }
+                else
+                {
+                    _servicoPermissao.Permitir(AcaoUsuario.Alterar, _tabela, nomeUsuario);
+                    conta.Usu_Alt = Geral.PermissaoUsuario.GravarUsuarioDataHora(nomeUsuario);
+                    _repositorioConta.Update(conta);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return conta.Id_Conta;
+        }
+
+        public IEnumerable<ContaConsulta> Filtrar(string campo, string valor, int codEmpresa, ContaFiltro contaFiltro, int id = 0)
+        {
+            return _repositorioContaConsulta.Filtrar(campo, valor, codEmpresa, contaFiltro, id);
+        }
+
+        public IEnumerable<Conta> ObterPorPedido(int numPedido)
+        {
+            return _repositorioConta.ObterPorPedido(numPedido);
+        }
+
+        public IEnumerable<Conta> ObterPorPedido(int numPedido, int codEmpresa = 1, int tipoConta = 2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExcluirParcelas(int numPedido, int codEmpresa = 1, int tipoConta = 2)
+        {
+            var conta = _repositorioConta.First(x => x.Cod_Empresa == codEmpresa 
+                && x.Num_Pedido == numPedido && x.Tipo_Conta == tipoConta);
+
+            if (conta != null)
+                _repositorioConta.Delete(conta);
+        }
+    }
+}
